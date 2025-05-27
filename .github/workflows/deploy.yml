@@ -41,7 +41,13 @@ jobs:
           mkdir -p $HOME/.kube
           cp $HOME/.kube/config $HOME/.kube/config.backup  # backup
 
+      - name: Enable NGINX Ingress Controller
+        run: minikube addons enable ingress
+
       - name: Deploy to Minikube
         run: |
           kubectl apply -f k8s/deployment.yaml --validate=false
           kubectl apply -f k8s/service.yaml --validate=false
+
+      - name: Apply Ingress
+        run: kubectl apply -f k8s/ingress.yaml
