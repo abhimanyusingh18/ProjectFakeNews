@@ -1,0 +1,32 @@
+nohup: ignoring input
+[nltk_data] Downloading package stopwords to /home/ubuntu/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.31.7.237:5000
+[33mPress CTRL+C to quit[0m
+106.219.160.200 - - [27/May/2025 17:14:39] "POST / HTTP/1.1" 200 -
+106.219.160.200 - - [27/May/2025 17:14:57] "POST / HTTP/1.1" 200 -
+106.219.160.200 - - [27/May/2025 17:15:09] "POST / HTTP/1.1" 200 -
+106.219.160.200 - - [27/May/2025 17:24:37] "POST / HTTP/1.1" 200 -
+106.219.160.200 - - [27/May/2025 17:24:46] "POST / HTTP/1.1" 200 -
+106.219.160.200 - - [27/May/2025 17:25:06] "POST / HTTP/1.1" 200 -
+106.219.160.200 - - [27/May/2025 17:25:21] "POST / HTTP/1.1" 200 -
+106.219.160.200 - - [27/May/2025 17:25:28] "POST / HTTP/1.1" 200 -
+106.219.160.200 - - [27/May/2025 17:26:16] "POST / HTTP/1.1" 200 -
+106.219.160.200 - - [27/May/2025 17:26:41] "POST / HTTP/1.1" 200 -
+106.219.160.200 - - [27/May/2025 17:26:55] "POST / HTTP/1.1" 200 -
+106.219.160.200 - - [27/May/2025 17:30:17] "POST / HTTP/1.1" 200 -
+106.219.160.200 - - [27/May/2025 17:30:50] "POST / HTTP/1.1" 200 -
+106.219.160.200 - - [27/May/2025 17:31:01] "POST / HTTP/1.1" 200 -
+106.219.160.200 - - [27/May/2025 17:34:25] "POST / HTTP/1.1" 200 -
+106.219.160.200 - - [27/May/2025 17:34:38] "POST / HTTP/1.1" 200 -
+106.219.160.200 - - [27/May/2025 17:34:51] "POST / HTTP/1.1" 200 -
+106.219.160.200 - - [27/May/2025 17:35:24] "POST / HTTP/1.1" 200 -
+106.219.160.200 - - [27/May/2025 17:35:59] "POST / HTTP/1.1" 200 -
+106.219.160.200 - - [27/May/2025 17:36:15] "POST / HTTP/1.1" 200 -
+106.219.160.200 - - [27/May/2025 17:36:35] "POST / HTTP/1.1" 200 -
+106.219.160.200 - - [27/May/2025 17:42:51] "POST / HTTP/1.1" 200 -
