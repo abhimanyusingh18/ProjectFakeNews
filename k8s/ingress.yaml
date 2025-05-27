@@ -6,13 +6,13 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: fake-news.local
+    - host: 13-201-137-1.nip.io
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: fake-news-service   # Your service name
+                name: fake-news-service
                 port:
-                  number: 80              # Your service port
+                  number: 80

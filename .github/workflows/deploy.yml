@@ -21,33 +21,19 @@ jobs:
 
   deploy-to-minikube:
     needs: build-and-push
-    runs-on: [self-hosted, linux]  # ⚠️ IMPORTANT: This must be your EC2 or local runner with Minikube
+    runs-on: [self-hosted, linux]
     steps:
       - uses: actions/checkout@v3
 
-      - name: Ensure Minikube is running
+      - name: Start Minikube (if not running)
         run: |
-          if ! minikube status | grep -q "Running"; then
-            minikube start --driver=docker
-          fi
+          minikube status || minikube start --driver=docker
 
-      - name: Set Minikube Docker context
-        run: |
-          minikube docker-env --shell bash
-          eval $(minikube docker-env)
-
-      - name: Use Minikube kubeconfig
-        run: |
-          mkdir -p $HOME/.kube
-          cp $HOME/.kube/config $HOME/.kube/config.backup  # backup
-
-      - name: Enable NGINX Ingress Controller
+      - name: Enable Ingress Addon
         run: minikube addons enable ingress
 
-      - name: Deploy to Minikube
+      - name: Deploy App
         run: |
-          kubectl apply -f k8s/deployment.yaml --validate=false
-          kubectl apply -f k8s/service.yaml --validate=false
-
-      - name: Apply Ingress
-        run: kubectl apply -f k8s/ingress.yaml
+          kubectl apply -f k8s/deployment.yaml
+          kubectl apply -f k8s/service.yaml
+          kubectl apply -f k8s/ingress.yaml
