@@ -1,0 +1,12 @@
+﻿{
+  "repositoryName": "abhimanyusingh18/ProjectFakeNews",
+  "pipelineDirectory": "ProjectFakeNews",
+  "workspaceDirectory": "ProjectFakeNews/ProjectFakeNews",
+  "repositories": {
+    "abhimanyusingh18/ProjectFakeNews": {
+      "repositoryPath": "ProjectFakeNews/ProjectFakeNews",
+      "lastRunOn": "05/27/2025 20:09:40 +00:00"
+    }
+  },
+  "lastRunOn": "05/27/2025 21:13:56 +00:00"
+}
