@@ -19,23 +19,30 @@ jobs:
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/fake-news-app:latest
 
-  deploy-to-k8s:
+  deploy-to-minikube:
     needs: build-and-push
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux]  # ⚠️ IMPORTANT: This must be your EC2 or local runner with Minikube
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up kubectl
-        uses: azure/setup-kubectl@v3
-        with:
-          version: 'v1.29.0'
+      - name: Ensure Minikube is running
+        run: |
+          if ! minikube status | grep -q "Running"; then
+            minikube start --driver=docker
+          fi
 
-      - name: Set up kubeconfig
+      - name: Set Minikube Docker context
+        run: |
+          minikube docker-env --shell bash
+          eval $(minikube docker-env)
+
+      - name: Use Minikube kubeconfig
         run: |
           mkdir -p $HOME/.kube
-          echo "${{ secrets.KUBECONFIG_CONTENT }}" | base64 -d > $HOME/.kube/config
+          cp $HOME/.kube/config $HOME/.kube/config.backup  # backup
+          cp $(minikube kubeconfig) $HOME/.kube/config
 
-      - name: Deploy to Kubernetes
+      - name: Deploy to Minikube
         run: |
           kubectl apply -f k8s/deployment.yaml --validate=false
           kubectl apply -f k8s/service.yaml --validate=false
