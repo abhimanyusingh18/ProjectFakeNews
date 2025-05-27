@@ -40,7 +40,6 @@ jobs:
         run: |
           mkdir -p $HOME/.kube
           cp $HOME/.kube/config $HOME/.kube/config.backup  # backup
-          cp $(minikube kubeconfig) $HOME/.kube/config
 
       - name: Deploy to Minikube
         run: |
