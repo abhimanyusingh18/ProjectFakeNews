@@ -37,7 +37,6 @@ jobs:
       - name: Delete existing resources (clean-up)
         continue-on-error: true
         run: |
-#          kubectl delete -f k8s/ingress.yaml
           kubectl delete -f k8s/service.yaml
           kubectl delete -f k8s/deployment.yaml
 
@@ -45,9 +44,3 @@ jobs:
         run: |
           kubectl apply -f k8s/deployment.yaml
           kubectl apply -f k8s/service.yaml
-#          kubectl apply -f k8s/ingress.yaml
-
-#      - name: Wait for Ingress to be ready
-#        run: |
-#          sleep 10
-#          kubectl get ingress
