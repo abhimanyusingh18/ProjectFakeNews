@@ -4,6 +4,11 @@ metadata:
   name: fake-news-app
 spec:
   replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0        # Ensures zero downtime
+      maxSurge: 1              # Allows one extra pod during update
   selector:
     matchLabels:
       app: fake-news
@@ -13,7 +18,16 @@ spec:
         app: fake-news
     spec:
       containers:
-      - name: fake-news-container
-        image: abhimanyuu18/fake-news-app:latest
-        ports:
-        - containerPort: 5000
+        - name: fake-news-container
+          image: abhimanyuu18/fake-news-app:latest
+          ports:
+            - containerPort: 5000
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 3
+            periodSeconds: 5
+            timeoutSeconds: 2
+            successThreshold: 1
+            failureThreshold: 3
