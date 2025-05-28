@@ -31,7 +31,23 @@ jobs:
             minikube start --driver=docker
           fi
 
-      - name: Deploy to Minikube
+      - name: Set kube context to Minikube
+        run: kubectl config use-context minikube
+
+      - name: Delete existing resources (clean-up)
+        continue-on-error: true
+        run: |
+          kubectl delete -f k8s/ingress.yaml
+          kubectl delete -f k8s/service.yaml
+          kubectl delete -f k8s/deployment.yaml
+
+      - name: Apply Kubernetes manifests (deployment, service, ingress)
         run: |
           kubectl apply -f k8s/deployment.yaml
           kubectl apply -f k8s/service.yaml
+          kubectl apply -f k8s/ingress.yaml
+
+      - name: Wait for Ingress to be ready
+        run: |
+          sleep 10
+          kubectl get ingress
