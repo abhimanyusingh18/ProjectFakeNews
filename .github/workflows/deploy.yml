@@ -20,7 +20,9 @@ jobs:
         run: docker push ${{ secrets.DOCKER_USERNAME }}/fake-news-app:latest
 
       - name: Clean up Docker system (prune all)
-        run: docker system prune -a -f
+        run: |
+          eval $(minikube docker-env)
+          docker system prune -a -f
 
   deploy-to-minikube:
     needs: build-and-push
