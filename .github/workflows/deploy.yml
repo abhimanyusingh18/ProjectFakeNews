@@ -30,15 +30,8 @@ jobs:
           if ! minikube status | grep -q "Running"; then
             minikube start --driver=docker
           fi
-      - name: Set Minikube Docker context
-        run: |
-          minikube docker-env --shell bash
-          eval $(minikube docker-env)
-      - name: Use Minikube kubeconfig
-        run: |
-          mkdir -p $HOME/.kube
-          cp $HOME/.kube/config $HOME/.kube/config.backup  # backup
+
       - name: Deploy to Minikube
         run: |
-          kubectl apply -f k8s/deployment.yaml --validate=false
-          kubectl apply -f k8s/service.yaml --validate=false
+          kubectl apply -f k8s/deployment.yaml
+          kubectl apply -f k8s/service.yaml
