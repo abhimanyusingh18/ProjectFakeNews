@@ -11,7 +11,7 @@
     <h2 class="mb-4">Fake News Detection</h2>
     <form method="POST">
       <div class="mb-3">
-        <textarea name="news" rows="6" class="form-control" placeholder="Paste news content here..." required></textarea>
+        <textarea name="news" rows="6" class="form-control" placeholder="Paste news content here..." required>{{ request.form['news'] if request.method == 'POST' else '' }}</textarea>
       </div>
       <button type="submit" class="btn btn-primary">Check</button>
     </form>
