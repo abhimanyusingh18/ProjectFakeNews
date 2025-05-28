@@ -25,6 +25,10 @@ jobs:
           eval $(minikube docker-env)
           docker system prune -a -f
 
+      - name: Clean up Docker system (prune all) without eval
+        continue-on-error: true
+        run: docker system prune -a -f
+
   deploy-to-minikube:
     needs: build-and-push
     runs-on: [self-hosted, linux]
