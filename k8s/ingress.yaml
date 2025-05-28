@@ -2,10 +2,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: fake-news-ingress
-  namespace: default
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
+  ingressClassName: nginx          # if you have multiple ingress controllers
   rules:
     - host: project.abhimanyu.live
       http:
@@ -16,4 +16,9 @@ spec:
               service:
                 name: fake-news-service
                 port:
-                  number: 81
+                  number: 80   # ← service port, not 5000
+  # (Optional) TLS block if you’ve set up cert-manager / TLS secrets
+  # tls:
+  #   - hosts:
+  #       - project.abhimanyu.live
+  #     secretName: fake-news-tls
